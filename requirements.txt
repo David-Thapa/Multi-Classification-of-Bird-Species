@@ -1,0 +1,9 @@
+numpy
+pandas
+matplotlib
+seaborn
+streamlit
+streamlit-cropper
+streamlit-option-menu
+tensorflow
+gdown

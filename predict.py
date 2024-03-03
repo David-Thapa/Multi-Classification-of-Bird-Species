@@ -2,13 +2,14 @@ from tensorflow.keras.preprocessing.image import load_img, img_to_array
 from keras.models import load_model
 import numpy as np
 import pandas as pd
+import os
+import gdown
 
 img_width = 224
 img_height = 224
 img_size = (img_width, img_height)
 img_channels = 3
 
-# To predict label
 # To preprocess image
 def img_preprocess(img_path):
     '''
@@ -26,6 +27,7 @@ def img_preprocess(img_path):
     img_array /= 255.
     return img_array
 
+# To predict label
 def pred_label(img_array):  
     '''
     Apply preprocessing technique to image
@@ -36,10 +38,21 @@ def pred_label(img_array):
     Returns:
         (class name, confidence) -> string
     '''
-    label = pd.read_csv('../artifacts/Predict_Labels')
+    if os.path.exists('artifacts'):
+        pass
+    else:
+        os.makedirs('artifacts')
+
+        #Download Model
+        gdown.download('https://drive.google.com/uc?id=10kRxOOhwsSVDKNZh7SOdiiXB1M7vFfa3',output='artifacts/Model:Birds_multiclassification.h5',quiet=False)
+
+        #Download Label
+        gdown.download('https://drive.google.com/uc?id=1NtgWZgjyca0NZ4P1QNHgr4pehhLEeA_e',output='artifacts/Predict_Labels.csv',quiet=False)
+
+    label = pd.read_csv('artifacts/Predict_Labels')
     label_dict = dict(zip(label['class_name'], label['class_index']))
 
-    model = load_model('../artifacts/Model:Birds_multiclassification.h5')
+    model = load_model('artifacts/Model:Birds_multiclassification.h5')
     pred_prob = model.predict(img_array)
     predicted_class_index = np.argmax(pred_prob)
     confidence = np.max(pred_prob)
@@ -50,3 +63,6 @@ def pred_label(img_array):
     predicted_class_name = class_names[predicted_class_index]
 
     return predicted_class_name, confidence
+
+if __name__ == '__main__':
+    pred_label(img_preprocess('static/Parrot.png'))

@@ -16,8 +16,10 @@ st.set_page_config(
     initial_sidebar_state="expanded",
     page_icon="static/Bird1.png",
 )
-
-gdown.download('https://drive.google.com/uc?id=1svlishBOwiBin5smpHbkjFpgvCJNqETe',output='static/tutorial_Video.mp4',quiet=False)
+if os.path.exists('static/tutorial_Video.mp4'):
+    pass
+else:
+    gdown.download('https://drive.google.com/uc?id=1svlishBOwiBin5smpHbkjFpgvCJNqETe',output='static/tutorial_Video.mp4',quiet=False)
 
 
 #============================================================================================================================

@@ -7,9 +7,11 @@ You need to download the tutorials video, model and label files but don't worry,
 ***Datasets Description***
 
 2970 photos total, split up into 22 target classes, each having 130 images with a 222*222 form, make up the dataset for the identification of bird species. This dataset, which is a subset of the overall dataset, has the following 22 classes:
+
 ![alt text](static/Dataset_description.png)
 
 # SCREENSHOTS OF THIS PROJECTS
+
 ![alt text](static/Intro_to_project.png)
 
 # HOW TO RUN THE CODE

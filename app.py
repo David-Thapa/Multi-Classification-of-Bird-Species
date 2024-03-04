@@ -165,7 +165,7 @@ if selected=='Result':
 
                 class_name,confidence = pred_label(img)
                 
-                if confidence < 0.75:
+                if confidence < 0.9:
                     st.write("I'm sorry, but I'm not prepared for this picture.")
                     st.divider()
                     st.subheader('why ?')

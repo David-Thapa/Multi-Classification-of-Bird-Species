@@ -7,3 +7,4 @@ streamlit-cropper
 streamlit-option-menu
 tensorflow
 gdown
+opencv-python

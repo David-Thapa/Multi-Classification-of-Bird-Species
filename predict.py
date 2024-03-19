@@ -38,7 +38,7 @@ def pred_label(img_array):
     Returns:
         (class name, confidence) -> string
     '''
-    if os.path.exists('artifacts'):
+    if os.path.exists('artifacts/Model:Birds_multiclassification.h5'):
         pass
     else:
         os.makedirs('artifacts')
@@ -49,9 +49,11 @@ def pred_label(img_array):
         #Download Label
         gdown.download('https://drive.google.com/uc?id=1NtgWZgjyca0NZ4P1QNHgr4pehhLEeA_e',output='artifacts/Predict_Labels.csv',quiet=False)
 
+    #Csv file into Dictionery
     label = pd.read_csv('artifacts/Predict_Labels.csv')
     label_dict = dict(zip(label['class_name'], label['class_index']))
 
+    #loading model and finding the confidence
     model = load_model('artifacts/Model:Birds_multiclassification.h5')
     pred_prob = model.predict(img_array)
     predicted_class_index = np.argmax(pred_prob)

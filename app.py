@@ -151,7 +151,7 @@ if selected=='Result':
         if clear:
             shutil.rmtree('static/save')
             st.write('You can save new images now')
-        
+        st.divider()
         st.subheader('Know about the bird')
         st.write('number represent their order')
         choice = st.selectbox('Chose a number',options=[(choice+1) for choice in range(0,saved_images)])
@@ -164,6 +164,7 @@ if selected=='Result':
                 img = img_preprocess(file_paths[choice-1])
 
                 class_name,confidence = pred_label(img)
+                print(class_name,confidence)
                 
                 if confidence < 0.9:
                     st.write("I'm sorry, but I'm not prepared for this picture.")
